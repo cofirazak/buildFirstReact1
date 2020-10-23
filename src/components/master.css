@@ -1,0 +1,13 @@
+.banner {
+  max-width: 80%;
+}
+
+img {
+ content: "";
+ margin: 0;
+}
+
+.photo-entry {
+  margin: 2rem;
+  max-width: 15%;
+}
