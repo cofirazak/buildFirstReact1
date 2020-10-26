@@ -16,8 +16,6 @@ class StatusBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { userId: "" };
-
     this.handleUserIdChange = this.handleUserIdChange.bind(this);
 
     this.state = {
@@ -25,7 +23,7 @@ class StatusBar extends React.Component {
       numMessages: 0,
       numFriends: 0,
       numFavourites: 0
-    }
+    };
   }
 
   handleUserIdChange(newId) {
@@ -34,12 +32,11 @@ class StatusBar extends React.Component {
 
     // simulated fetch, in real life this would have been retrieved
     // from data sources instead of hardcoded!!
-
-    if (newId === "harry") {
+    if (newId === "cofirazak") {
       this.setState({ numMessages: 3, numFriends: 4, numFavourites: 5 });
     }
 
-    if (newId === "jenny") {
+    if (newId === "prekaterina") {
       this.setState({ numMessages: 8, numFriends: 10, numFavourites: 3 });
     }
   }

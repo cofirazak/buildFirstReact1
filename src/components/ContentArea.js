@@ -2,48 +2,53 @@ import React from 'react';
 import UserManager from './UserManager';
 import MessageArea from './MessageArea';
 import AlbumMaker from './AlbumMaker';
-// Task 5 import ContentAreaContext from './ContentAreaContext';
-// Task 5 import LayeredDiv from './LayeredDiv';
+import ContentAreaContext from './ContentAreaContext';
+import LayeredDiv from './LayeredDiv';
 
 class ContentArea extends React.Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      userId   : "",
-      userName : "",
-      loggedIn : false
-   };
+        this.state = {
+            userId: "",
+            userName: "",
+            loggedIn: false
+        };
 
-   this.handleLogInChange = this.handleLogInChange.bind(this);
+        this.handleLogInChange = this.handleLogInChange.bind(this);
 
-  }
+    }
 
-  render() {
+    render() {
 
-    return (
+        return (
+            <ContentAreaContext.Provider
+                value={{userId: this.state.userId, userName: this.state.userName, loggedIn: this.state.loggedIn}}>
+                <div>
+                    <UserManager
+                        logInCallback={this.handleLogInChange}
+                        showMessageArea={userInfo => (<MessageArea userInfo={userInfo}/>)}
+                    />
+                    <AlbumMaker/>
+                    <LayeredDiv />
+                </div>
+            </ContentAreaContext.Provider>
+        );
 
-        <div>
-          <UserManager logInCallback={ this.handleLogInChange } />
-          { /* Task 4: Add render prop */ }
-          <AlbumMaker />
-          { /* Task 5: <LayeredDiv /> */ }
-        </div>
+    }
 
-    );
+    handleLogInChange(logInResult) {
 
-  }
+        this.setState({
+            userId: logInResult.userId,
+            userName: logInResult.userName,
+            loggedIn: logInResult.loggedIn
+        }, () => {
+            console.log(this.state);
+        });
 
-  handleLogInChange(logInResult) {
-
-    this.setState ( {
-      userId   : logInResult.userId,
-      userName : logInResult.userName,
-      loggedIn : logInResult.loggedIn
-    }, () => { console.log(this.state); });
-
-  }
+    }
 }
 
 export default ContentArea;

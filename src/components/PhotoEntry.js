@@ -1,10 +1,10 @@
 import React from 'react';
 import './master.css';
-// Task 5 import ContentAreaContext from './ContentAreaContext';
+import ContentAreaContext from './ContentAreaContext';
 
 class PhotoEntry extends React.Component {
 
-  // Task 5 static contextType = ContentAreaContext;
+  static contextType = ContentAreaContext;
 
   render() {
 
@@ -18,9 +18,9 @@ class PhotoEntry extends React.Component {
             </a>
             <div className="photo-caption">{this.props.caption}</div>
             <div className="photo-info">{this.props.location}</div>
-            { /* Task 5 ??? !== "" &&
-                <div className="photo-comment">Commenting as: {???} <input type="text" placeholder="comment"/></div>
-            */ }
+            { this.context.userName !== "" &&
+                <div className="photo-comment">Commenting as: {this.context.userName} <input type="text" placeholder="comment"/></div>
+            }
         </div>
 
     );
